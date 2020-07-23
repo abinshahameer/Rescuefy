@@ -1,7 +1,9 @@
+import 'package:gradient_widgets/gradient_widgets.dart';
 import 'package:rescuefy/services/auth.dart';
 import 'package:rescuefy/shared/constants.dart';
 import 'package:rescuefy/shared/loading.dart';
 import 'package:flutter/material.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class Register extends StatefulWidget {
   final Function toggleView;
@@ -27,11 +29,11 @@ class _RegisterState extends State<Register> {
     return loading
         ? Loading()
         : Scaffold(
-            backgroundColor: Colors.brown[100],
-            appBar: AppBar(
-              backgroundColor: Colors.brown[400],
+            backgroundColor: Colors.white,
+            appBar: GradientAppBar(
+              gradient: LinearGradient(colors: [Colors.indigo, Colors.cyan]),
               elevation: 0.0,
-              title: Text('Sign up to Brew Crew'),
+              title: Text('Sign up to Rescuefy'),
               actions: <Widget>[
                 FlatButton.icon(
                   icon: Icon(Icons.person),
@@ -68,13 +70,13 @@ class _RegisterState extends State<Register> {
                       },
                     ),
                     SizedBox(height: 20.0),
-                    RaisedButton(
-                        color: Colors.pink[400],
+                    GradientButton(
+                        gradient: Gradients.blush,
                         child: Text(
                           'Register',
                           style: TextStyle(color: Colors.white),
                         ),
-                        onPressed: () async {
+                        callback: () async {
                           if (_formKey.currentState.validate()) {
                             setState(() => loading = true);
                             dynamic result = await _auth

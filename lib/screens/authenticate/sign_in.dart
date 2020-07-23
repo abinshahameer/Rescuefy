@@ -2,6 +2,9 @@ import 'package:rescuefy/services/auth.dart';
 import 'package:rescuefy/shared/constants.dart';
 import 'package:rescuefy/shared/loading.dart';
 import 'package:flutter/material.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
+import 'package:flutter_gradients/flutter_gradients.dart';
+import 'package:gradient_widgets/gradient_widgets.dart';
 
 class SignIn extends StatefulWidget {
   final Function toggleView;
@@ -27,11 +30,11 @@ class _SignInState extends State<SignIn> {
     return loading
         ? Loading()
         : Scaffold(
-            backgroundColor: Colors.brown[100],
-            appBar: AppBar(
-              backgroundColor: Colors.brown[400],
+            backgroundColor: Colors.white,
+            appBar: GradientAppBar(
+              gradient: LinearGradient(colors: [Colors.indigo, Colors.cyan]),
               elevation: 0.0,
-              title: Text('Sign in to Brew Crew'),
+              title: Text('Sign in to Rescuefy'),
               actions: <Widget>[
                 FlatButton.icon(
                   icon: Icon(Icons.person),
@@ -41,6 +44,7 @@ class _SignInState extends State<SignIn> {
               ],
             ),
             body: Container(
+
               padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
               child: Form(
                 key: _formKey,
@@ -59,8 +63,9 @@ class _SignInState extends State<SignIn> {
                     TextFormField(
                       obscureText: true,
                       decoration:
-                          textInputDecoration.copyWith(hintText: 'password'),
-                      validator: (val) => val.length < 6
+                      textInputDecoration.copyWith(hintText: 'password'),
+                      validator: (val) =>
+                      val.length < 6
                           ? 'Enter a password 6+ chars long'
                           : null,
                       onChanged: (val) {
@@ -68,13 +73,13 @@ class _SignInState extends State<SignIn> {
                       },
                     ),
                     SizedBox(height: 20.0),
-                    RaisedButton(
-                        color: Colors.pink[400],
+                    GradientButton(
+                        gradient: Gradients.blush,
                         child: Text(
                           'Sign In',
                           style: TextStyle(color: Colors.white),
                         ),
-                        onPressed: () async {
+                        callback: () async {
                           if (_formKey.currentState.validate()) {
                             setState(() => loading = true);
                             dynamic result = await _auth
@@ -83,7 +88,7 @@ class _SignInState extends State<SignIn> {
                               setState(() {
                                 loading = false;
                                 error =
-                                    'Could not sign in with those credentials';
+                                'Could not sign in with those credentials';
                               });
                             }
                           }
