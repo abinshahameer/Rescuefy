@@ -5,7 +5,7 @@ class Loading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.blue[900],
+        backgroundColor: Colors.indigo,
         body: Center(
             child: SpinKitFadingCube(
           color: Colors.white,
