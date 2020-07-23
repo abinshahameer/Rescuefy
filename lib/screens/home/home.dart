@@ -4,6 +4,8 @@ import 'package:rescuefy/services/auth.dart';
 import 'package:rescuefy/screens/home/config/palette.dart';
 import 'package:rescuefy/screens/home/config/styles.dart';
 import 'package:rescuefy/screens/home/config/custom_app_bar.dart';
+import 'package:flutter/services.dart';
+import 'package:geolocator/geolocator.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -12,14 +14,20 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final AuthService _auth = AuthService();
+  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+
+  Position _currentPosition;
+  String _currentAddress;
+  String _locality;
 
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
+    _getCurrentLocation();
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.white,
-        appBar: CustomAppBar(),
+        appBar: CustomAppBar(locality: _locality),
         body: CustomScrollView(
           physics: ClampingScrollPhysics(),
           slivers: <Widget>[
@@ -50,8 +58,8 @@ class _HomeState extends State<Home> {
                 Text(
                   'Rescuefy',
                   style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 25.0,
+                    color: Colors.white70,
+                    fontSize: 35.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -62,7 +70,7 @@ class _HomeState extends State<Home> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  'Are you feeling sick?',
+                  'Are you in Emergency?',
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 22.0,
@@ -71,7 +79,7 @@ class _HomeState extends State<Home> {
                 ),
                 SizedBox(height: screenHeight * 0.01),
                 Text(
-                  'If you feel sick with any COVID-19 symptoms, please call or text us immediately for help',
+                  'If you have any Emergency, please alert us or text us immediately. Our nearest volunteer will reach you shortly.',
                   style: const TextStyle(
                     color: Colors.white70,
                     fontSize: 15.0,
@@ -92,11 +100,11 @@ class _HomeState extends State<Home> {
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                       icon: const Icon(
-                        Icons.phone,
+                        Icons.add_alert,
                         color: Colors.white,
                       ),
                       label: Text(
-                        'Call Now',
+                        'Alert Now',
                         style: Styles.buttonTextStyle,
                       ),
                       textColor: Colors.white,
@@ -130,4 +138,36 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+
+  _getCurrentLocation() {
+    geolocator
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+        .then((Position position) {
+      setState(() {
+        _currentPosition = position;
+      });
+
+      _getAddressFromLatLng();
+    }).catchError((e) {
+      print(e);
+    });
+  }
+
+  _getAddressFromLatLng() async {
+    try {
+      List<Placemark> p = await geolocator.placemarkFromCoordinates(
+          _currentPosition.latitude, _currentPosition.longitude);
+
+      Placemark place = p[0];
+
+      setState(() {
+        _currentAddress =
+        "${place.locality}, ${place.postalCode}, ${place.country}";
+        _locality = place.locality;
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
 }
