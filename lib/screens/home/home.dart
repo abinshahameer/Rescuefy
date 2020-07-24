@@ -7,7 +7,9 @@ import 'package:rescuefy/screens/home/config/custom_app_bar.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:rescuefy/screens/home/config/data.dart';
+import 'package:rescuefy/shop/shop.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:rescuefy/shop/body.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -218,29 +220,31 @@ class _HomeState extends State<Home> {
               children: food
                   .map((e) =>
                   GestureDetector(
-
-                    child: Column(
-                      children: <Widget>[
-
-                        Image.asset(
-                          e.keys.first,
-                          height: screenHeight * 0.12,
-                          width: screenHeight * 0.12,
-
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => shop()),
+                          );
+                        },
+                        child: Column(
+                          children: <Widget>[
+                            Image.asset(
+                              e.keys.first,
+                              height: screenHeight * 0.12,
+                              width: screenHeight * 0.12,
+                            ),
+                            SizedBox(height: screenHeight * 0.015),
+                            Text(
+                              e.values.first,
+                              style: const TextStyle(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              textAlign: TextAlign.center,
+                            )
+                          ],
                         ),
-
-                        SizedBox(height: screenHeight * 0.015),
-                        Text(
-                          e.values.first,
-                          style: const TextStyle(
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.w500,
-                          ),
-                          textAlign: TextAlign.center,
-                        )
-                      ],
-                    ),
-                  ))
+                      ))
                   .toList(),
             ),
 
