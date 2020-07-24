@@ -81,6 +81,7 @@ class _HomeState extends State<Home> {
                           child: Icon(
                             value,
                             color: Colors.white,
+                            size: 25,
                           ),
                         ),
                       ),
@@ -387,9 +388,9 @@ class _HomeState extends State<Home> {
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     colors: <Color>[
-                      Color(0xFF0D47A1),
-                      Color(0xFF1976D2),
-                      Color(0xFF42A5F5),
+                      Colors.blue,
+                      Colors.red,
+                      //Color(0xFF42A5F5),
                     ],
                   ),
                 ),
