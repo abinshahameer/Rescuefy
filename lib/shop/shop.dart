@@ -21,6 +21,7 @@ class shop extends StatelessWidget {
         FlatButton.icon(
           icon: Icon(Icons.home),
           label: Text('Home'),
+          onPressed: null,
         ),
       ],
     );

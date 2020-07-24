@@ -1,5 +1,5 @@
 final food = [
-  {'assets/images/food.jpg': 'Order\nFood'},
+  {'assets/images/food.jpg': 'Order\nFood', 'shop': 'shop'},
   {'assets/images/registerresaurant.jpg': 'Register\nRestaurants'},
   {'assets/images/fooddonate.jpg': 'Donate\nFood'},
 ];

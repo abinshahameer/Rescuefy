@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:gradient_app_bar/gradient_app_bar.dart';
-import 'package:rescuefy/services/auth.dart';
+
+//import 'package:gradient_app_bar/gradient_app_bar.dart';
+//import 'package:rescuefy/services/auth.dart';
 import 'package:rescuefy/screens/home/config/palette.dart';
 import 'package:rescuefy/screens/home/config/styles.dart';
 import 'package:rescuefy/screens/home/config/custom_app_bar.dart';
-import 'package:flutter/services.dart';
+
+//import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:rescuefy/screens/home/config/data.dart';
 import 'package:rescuefy/shop/shop.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:rescuefy/shop/body.dart';
+//import 'package:rescuefy/shop/body.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -17,7 +19,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final AuthService _auth = AuthService();
+  //final AuthService _auth = AuthService();
   final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
 
   Position _currentPosition;
@@ -433,7 +435,7 @@ class _HomeState extends State<Home> {
 
       setState(() {
         _currentAddress =
-        "${place.locality}, ${place.postalCode}, ${place.country}";
+            "${place.locality}, ${place.postalCode}, ${place.country}";
         _locality = place.locality;
       });
     } catch (e) {
@@ -441,13 +443,13 @@ class _HomeState extends State<Home> {
     }
   }
 
-  _launchURL() async {
-    const url = 'https://flutter.dev';
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+//  _launchURL() async {
+//    const url = 'https://flutter.dev';
+//    if (await canLaunch(url)) {
+//      await launch(url);
+//    } else {
+//      throw 'Could not launch $url';
+//    }
+//  }
 
 }
