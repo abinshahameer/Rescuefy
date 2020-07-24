@@ -7,6 +7,7 @@ import 'package:rescuefy/screens/home/config/custom_app_bar.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:rescuefy/screens/home/config/data.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -20,6 +21,12 @@ class _HomeState extends State<Home> {
   Position _currentPosition;
   String _currentAddress;
   String _locality = "";
+  final List _screens = [
+    Home(),
+    //StatsScreen(),
+    Scaffold(),
+  ];
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +47,47 @@ class _HomeState extends State<Home> {
           slivers: <Widget>[
             _buildHeader(screenHeight),
             _buildPreventionTips(screenHeight),
+
           ],
 
         ),
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          onTap: (index) => setState(() => _currentIndex = index),
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: Colors.white,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.grey,
+          elevation: 0.0,
+          items: [Icons.home, Icons.info]
+              .asMap()
+              .map((key, value) =>
+              MapEntry(
+                key,
+                BottomNavigationBarItem(
+                  title: Text(''),
+                  icon: Container(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 6.0,
+                      horizontal: 16.0,
+                    ),
+                    decoration: BoxDecoration(
+                      color: _currentIndex == key
+                          ? Colors.indigo
+                          : Colors.cyan,
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    child: Icon(value, color: Colors.white,),
+                  ),
+                ),
+              ))
+              .values
+              .toList(),
+        ),
       ),
+
     );
   }
 
@@ -171,11 +215,14 @@ class _HomeState extends State<Home> {
                   .map((e) =>
                   Column(
                     children: <Widget>[
+
                       Image.asset(
                         e.keys.first,
                             height: screenHeight * 0.12,
                             width: screenHeight * 0.12,
-                          ),
+
+                      ),
+
                       SizedBox(height: screenHeight * 0.015),
                       Text(
                         e.values.first,
@@ -358,6 +405,15 @@ class _HomeState extends State<Home> {
       });
     } catch (e) {
       print(e);
+    }
+  }
+
+  _launchURL() async {
+    const url = 'https://flutter.dev';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
     }
   }
 
