@@ -1,29 +1,28 @@
 final food = [
-  {'assets/images/distance.png': 'Order\nFood'},
-  {'assets/images/wash_hands.png': 'Register\nRestaurants'},
-  {'assets/images/mask.png': 'Donate\nFood'},
+  {'assets/images/food.jpg': 'Order\nFood'},
+  {'assets/images/registerresaurant.jpg': 'Register\nRestaurants'},
+  {'assets/images/fooddonate.jpg': 'Donate\nFood'},
 ];
 final medical = [
-  {'assets/images/distance.png': 'Order\nMedicine'},
-  {'assets/images/wash_hands.png': 'Contact\nNearby\nDoctors'},
-  {'assets/images/mask.png': 'Register\nShop'},
-
+  {'assets/images/medicine.jpg': 'Order\nMedicine'},
+  {'assets/images/contactdoctor.jpg': 'Contact\nNearby\nDoctors'},
+  {'assets/images/medicine.jpg': 'Register\nShop'},
 ];
 final support = [
-  {'assets/images/distance.png': 'Nearest\nVolunteers'},
-  {'assets/images/wash_hands.png': 'Volunteer\nRegistration'},
+  {'assets/images/volunteer.png': 'Nearest\nVolunteers'},
+  {'assets/images/volunteer.png': 'Volunteer\nRegistration'},
 
 
 ];
 final complaints = [
-  {'assets/images/distance.png': 'KSEB'},
-  {'assets/images/wash_hands.png': 'Water\nAuthority'},
-  {'assets/images/mask.png': 'Broadband\nServices'},
+  {'assets/images/kseb.jpg': 'KSEB'},
+  {'assets/images/kwa.png': 'Water\nAuthority'},
+  {'assets/images/broadband.jpg': 'Broadband\nServices'},
 
 ];
 final services = [
-  {'assets/images/distance.png': 'Electrician'},
-  {'assets/images/wash_hands.png': 'Plumber'},
-  {'assets/images/mask.png': 'Others'},
+  {'assets/images/electr.jpg': 'Electrician'},
+  {'assets/images/plumb.jpeg': 'Plumber'},
+  {'assets/images/serv.png': 'Others'},
 
 ];

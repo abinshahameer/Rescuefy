@@ -173,8 +173,9 @@ class _HomeState extends State<Home> {
                     children: <Widget>[
                       Image.asset(
                         e.keys.first,
-                        height: screenHeight * 0.12,
-                      ),
+                            height: screenHeight * 0.12,
+                            width: screenHeight * 0.12,
+                          ),
                       SizedBox(height: screenHeight * 0.015),
                       Text(
                         e.values.first,
@@ -205,6 +206,7 @@ class _HomeState extends State<Home> {
                           Image.asset(
                             e.keys.first,
                             height: screenHeight * 0.12,
+                            width: screenHeight * 0.12,
                           ),
                           SizedBox(height: screenHeight * 0.015),
                           Text(
@@ -236,6 +238,7 @@ class _HomeState extends State<Home> {
                       Image.asset(
                         e.keys.first,
                         height: screenHeight * 0.12,
+                        width: screenHeight * 0.12,
                       ),
                       SizedBox(height: screenHeight * 0.015),
                       Text(
@@ -268,6 +271,7 @@ class _HomeState extends State<Home> {
                       Image.asset(
                         e.keys.first,
                         height: screenHeight * 0.12,
+                        width: screenHeight * 0.12,
                       ),
                       SizedBox(height: screenHeight * 0.015),
                       Text(
@@ -299,6 +303,11 @@ class _HomeState extends State<Home> {
                       Image.asset(
                         e.keys.first,
                         height: screenHeight * 0.12,
+                        width: screenHeight * 0.12,
+
+//                        height: screenHeight * 0.12,
+//                        width: screenHeight*0.01,
+
                       ),
                       SizedBox(height: screenHeight * 0.015),
                       Text(
