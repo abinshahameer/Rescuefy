@@ -6,6 +6,7 @@ import 'package:rescuefy/screens/home/config/styles.dart';
 import 'package:rescuefy/screens/home/config/custom_app_bar.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:rescuefy/screens/home/config/data.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -18,12 +19,18 @@ class _HomeState extends State<Home> {
 
   Position _currentPosition;
   String _currentAddress;
-  String _locality;
+  String _locality = "";
 
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
-    _getCurrentLocation();
+
+    Future<void> location() async {
+      await _getCurrentLocation();
+    }
+
+    location();
+
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.white,
@@ -32,7 +39,9 @@ class _HomeState extends State<Home> {
           physics: ClampingScrollPhysics(),
           slivers: <Widget>[
             _buildHeader(screenHeight),
+            _buildPreventionTips(screenHeight),
           ],
+
         ),
       ),
     );
@@ -139,7 +148,181 @@ class _HomeState extends State<Home> {
     );
   }
 
-  _getCurrentLocation() {
+  SliverToBoxAdapter _buildPreventionTips(double screenHeight) {
+    return SliverToBoxAdapter(
+      child: Container(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+
+          children: <Widget>[
+            Text(
+              'Food',
+              style: const TextStyle(
+                fontSize: 22.0,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(height: 20.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+              children: food
+                  .map((e) =>
+                  Column(
+                    children: <Widget>[
+                      Image.asset(
+                        e.keys.first,
+                        height: screenHeight * 0.12,
+                      ),
+                      SizedBox(height: screenHeight * 0.015),
+                      Text(
+                        e.values.first,
+                        style: const TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        textAlign: TextAlign.center,
+                      )
+                    ],
+                  ))
+                  .toList(),
+            ),
+
+            Text(
+              'Medicine',
+              style: const TextStyle(
+                fontSize: 22.0,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(height: 20.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: prevention
+                  .map((e) =>
+                  Column(
+                    children: <Widget>[
+                      Image.asset(
+                        e.keys.first,
+                        height: screenHeight * 0.12,
+                      ),
+                      SizedBox(height: screenHeight * 0.015),
+                      Text(
+                        e.values.first,
+                        style: const TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        textAlign: TextAlign.center,
+                      )
+                    ],
+                  ))
+                  .toList(),
+            ),
+            Text(
+              'Support',
+              style: const TextStyle(
+                fontSize: 22.0,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(height: 20.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: prevention
+                  .map((e) =>
+                  Column(
+                    children: <Widget>[
+                      Image.asset(
+                        e.keys.first,
+                        height: screenHeight * 0.12,
+                      ),
+                      SizedBox(height: screenHeight * 0.015),
+                      Text(
+                        e.values.first,
+                        style: const TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        textAlign: TextAlign.center,
+                      )
+                    ],
+                  ))
+                  .toList(),
+            ),
+
+            Text(
+              'Register Complaints',
+              style: const TextStyle(
+                fontSize: 22.0,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(height: 20.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: prevention
+                  .map((e) =>
+                  Column(
+                    children: <Widget>[
+                      Image.asset(
+                        e.keys.first,
+                        height: screenHeight * 0.12,
+                      ),
+                      SizedBox(height: screenHeight * 0.015),
+                      Text(
+                        e.values.first,
+                        style: const TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        textAlign: TextAlign.center,
+                      )
+                    ],
+                  ))
+                  .toList(),
+            ),
+            Text(
+              'Other Services',
+              style: const TextStyle(
+                fontSize: 22.0,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(height: 20.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: prevention
+                  .map((e) =>
+                  Column(
+                    children: <Widget>[
+                      Image.asset(
+                        e.keys.first,
+                        height: screenHeight * 0.12,
+                      ),
+                      SizedBox(height: screenHeight * 0.015),
+                      Text(
+                        e.values.first,
+                        style: const TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        textAlign: TextAlign.center,
+                      )
+                    ],
+                  ))
+                  .toList(),
+            ),
+
+
+          ],
+        ),
+      ),
+    );
+  }
+
+  _getCurrentLocation() async {
     geolocator
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
         .then((Position position) {
