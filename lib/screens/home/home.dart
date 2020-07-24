@@ -47,44 +47,47 @@ class _HomeState extends State<Home> {
           slivers: <Widget>[
             _buildHeader(screenHeight),
             _buildPreventionTips(screenHeight),
-
           ],
-
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          onTap: (index) => setState(() => _currentIndex = index),
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.white,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.grey,
-          elevation: 0.0,
-          items: [Icons.home, Icons.info]
-              .asMap()
-              .map((key, value) =>
-              MapEntry(
-                key,
-                BottomNavigationBarItem(
-                  title: Text(''),
-                  icon: Container(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 6.0,
-                      horizontal: 16.0,
-                    ),
-                    decoration: BoxDecoration(
-                      color: _currentIndex == key
-                          ? Colors.indigo
-                          : Colors.cyan,
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    child: Icon(value, color: Colors.white,),
-                  ),
-                ),
-              ))
-              .values
-              .toList(),
+        bottomNavigationBar: SizedBox(
+          height: 55,
+          child: BottomNavigationBar(
+            currentIndex: _currentIndex,
+            onTap: (index) => setState(() => _currentIndex = index),
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: Colors.white,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            selectedItemColor: Colors.white,
+            unselectedItemColor: Colors.grey,
+            elevation: 0.0,
+            items: [Icons.home, Icons.info]
+                .asMap()
+                .map((key, value) => MapEntry(
+                      key,
+                      BottomNavigationBarItem(
+                        title: Text(''),
+                        icon: Container(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 0.0,
+                            horizontal: 16.0,
+                          ),
+                          decoration: BoxDecoration(
+                            color: _currentIndex == key
+                                ? Colors.indigo
+                                : Colors.cyan,
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: Icon(
+                            value,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ))
+                .values
+                .toList(),
+          ),
         ),
       ),
 
@@ -213,26 +216,29 @@ class _HomeState extends State<Home> {
 
               children: food
                   .map((e) =>
-                  Column(
-                    children: <Widget>[
+                  GestureDetector(
 
-                      Image.asset(
-                        e.keys.first,
-                            height: screenHeight * 0.12,
-                            width: screenHeight * 0.12,
+                    child: Column(
+                      children: <Widget>[
 
-                      ),
+                        Image.asset(
+                          e.keys.first,
+                          height: screenHeight * 0.12,
+                          width: screenHeight * 0.12,
 
-                      SizedBox(height: screenHeight * 0.015),
-                      Text(
-                        e.values.first,
-                        style: const TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w500,
                         ),
-                        textAlign: TextAlign.center,
-                      )
-                    ],
+
+                        SizedBox(height: screenHeight * 0.015),
+                        Text(
+                          e.values.first,
+                          style: const TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          textAlign: TextAlign.center,
+                        )
+                      ],
+                    ),
                   ))
                   .toList(),
             ),
@@ -370,7 +376,29 @@ class _HomeState extends State<Home> {
                   .toList(),
             ),
 
-
+            const SizedBox(height: 30),
+            RaisedButton(
+              onPressed: () {},
+              textColor: Colors.white,
+              padding: const EdgeInsets.all(0.0),
+              child: Container(
+                width: 500,
+                height: 60,
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: <Color>[
+                      Color(0xFF0D47A1),
+                      Color(0xFF1976D2),
+                      Color(0xFF42A5F5),
+                    ],
+                  ),
+                ),
+                padding: const EdgeInsets.all(10.0),
+                child:
+                Center(child: const Text('REQUEST EMERGENCY RESCUE',
+                    style: TextStyle(fontSize: 20))),
+              ),
+            ),
           ],
         ),
       ),
