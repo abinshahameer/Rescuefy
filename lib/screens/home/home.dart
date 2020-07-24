@@ -190,7 +190,7 @@ class _HomeState extends State<Home> {
             ),
 
             Text(
-              'Medicine',
+              'Medical',
               style: const TextStyle(
                 fontSize: 22.0,
                 fontWeight: FontWeight.w600,
@@ -199,18 +199,17 @@ class _HomeState extends State<Home> {
             const SizedBox(height: 20.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: prevention
-                  .map((e) =>
-                  Column(
-                    children: <Widget>[
-                      Image.asset(
-                        e.keys.first,
-                        height: screenHeight * 0.12,
-                      ),
-                      SizedBox(height: screenHeight * 0.015),
-                      Text(
-                        e.values.first,
-                        style: const TextStyle(
+              children: medical
+                  .map((e) => Column(
+                        children: <Widget>[
+                          Image.asset(
+                            e.keys.first,
+                            height: screenHeight * 0.12,
+                          ),
+                          SizedBox(height: screenHeight * 0.015),
+                          Text(
+                            e.values.first,
+                            style: const TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.w500,
                         ),
@@ -230,7 +229,7 @@ class _HomeState extends State<Home> {
             const SizedBox(height: 20.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: prevention
+              children: support
                   .map((e) =>
                   Column(
                     children: <Widget>[
@@ -262,7 +261,7 @@ class _HomeState extends State<Home> {
             const SizedBox(height: 20.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: prevention
+              children: complaints
                   .map((e) =>
                   Column(
                     children: <Widget>[
@@ -293,7 +292,7 @@ class _HomeState extends State<Home> {
             const SizedBox(height: 20.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: prevention
+              children: services
                   .map((e) =>
                   Column(
                     children: <Widget>[
