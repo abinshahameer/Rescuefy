@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RestaurantRegister extends StatelessWidget {
   @override
@@ -36,6 +37,7 @@ class _FormResRegState extends State<FormResReg> {
   String name = "";
   String phone = "";
   String resname = "";
+  final firestoreInstance = Firestore.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -103,8 +105,19 @@ class _FormResRegState extends State<FormResReg> {
                 // otherwise.
                 if (_formKey.currentState.validate()) {
                   // If the form is valid, display a Snackbar.
-                  Scaffold.of(context)
-                      .showSnackBar(SnackBar(content: Text('Processing Data')));
+                  firestoreInstance.collection("Restaurants").document(
+                      "Restaurant1").setData(
+                      {
+                        "name": name,
+                        "phone": phone,
+                        "resname": resname,
+                        "address": {
+                          "street": "street 24",
+                          "city": "new york"
+                        }
+                      }).then((_) {
+                    print("success")
+                  });
                 }
               },
               child: Text('Submit'),
