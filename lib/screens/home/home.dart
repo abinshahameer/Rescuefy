@@ -222,20 +222,22 @@ class _HomeState extends State<Home> {
               children: food
                   .map((e) =>
                   GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => shop()),
-                          );
-                        },
-                        child: Column(
-                          children: <Widget>[
-                            Image.asset(
-                              e.keys.first,
-                              height: screenHeight * 0.12,
-                              width: screenHeight * 0.12,
-                            ),
-                            SizedBox(height: screenHeight * 0.015),
+                    onTap: () {
+                      if (e.values.first == 'Order\nFood') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => shop()),
+                        );
+                      } else if (e.values.first == 'Register\nRestaurants')
+                    },
+                    child: Column(
+                      children: <Widget>[
+                        Image.asset(
+                          e.keys.first,
+                          height: screenHeight * 0.12,
+                          width: screenHeight * 0.12,
+                        ),
+                        SizedBox(height: screenHeight * 0.015),
                             Text(
                               e.values.first,
                               style: const TextStyle(
