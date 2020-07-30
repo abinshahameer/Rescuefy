@@ -14,7 +14,9 @@ class RestaurantRegister extends StatelessWidget {
             FlatButton.icon(
               icon: Icon(Icons.home),
               label: Text('Home'),
-              onPressed: null,
+              onPressed: () {
+                Navigator.pop(context);
+              },
             ),
           ],
         ),
@@ -31,6 +33,9 @@ class FormResReg extends StatefulWidget {
 
 class _FormResRegState extends State<FormResReg> {
   final _formKey = GlobalKey<FormState>();
+  String name = "";
+  String phone = "";
+  String resname = "";
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +44,55 @@ class _FormResRegState extends State<FormResReg> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+//          TextFormField(
+//            validator: (value) {
+//              if (value.isEmpty) {
+//                return 'Please enter some text';
+//              }
+//              return null;
+//            },
+//          ),
           TextFormField(
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Please enter some text';
-              }
-              return null;
+            decoration: const InputDecoration(
+              icon: const Icon(Icons.person),
+              hintText: 'Enter your name',
+              labelText: 'Name',
+            ),
+            onChanged: (val) {
+              setState(() {
+                name = val;
+              });
+            },
+          ),
+          TextFormField(
+            decoration: const InputDecoration(
+              icon: const Icon(Icons.phone),
+              hintText: 'Enter a phone number',
+              labelText: 'Phone',
+            ),
+            onChanged: (val) {
+              setState(() {
+                phone = val;
+              });
+            },
+          ),
+          TextFormField(
+            decoration: const InputDecoration(
+              icon: const Icon(Icons.location_city),
+              hintText: 'Enter you location',
+              labelText: 'location',
+            ),
+          ),
+          TextFormField(
+            decoration: const InputDecoration(
+              icon: const Icon(Icons.restaurant),
+              hintText: 'Enter you Restaurant Name',
+              labelText: 'Restaurant Name',
+            ),
+            onChanged: (val) {
+              setState(() {
+                resname = val;
+              });
             },
           ),
           Padding(

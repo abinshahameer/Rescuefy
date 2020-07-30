@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rescuefy/Forms/form.dart';
 
 //import 'package:gradient_app_bar/gradient_app_bar.dart';
 //import 'package:rescuefy/services/auth.dart';
@@ -224,12 +225,19 @@ class _HomeState extends State<Home> {
                   GestureDetector(
                     onTap: () {
                       if (e.values.first == 'Order\nFood') {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => shop()),
-                        );
-                      } else if (e.values.first == 'Register\nRestaurants')
-                    },
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => shop()),
+                            );
+                          } else if (e.values.first ==
+                              'Register\nRestaurants') {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => RestaurantRegister()),
+                            );
+                          }
+                        },
                     child: Column(
                       children: <Widget>[
                         Image.asset(
