@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rescuefy/Forms/form.dart';
+import 'package:rescuefy/Forms/resregform.dart';
+import 'package:rescuefy/Forms/volregform.dart';
+import 'package:rescuefy/ViewData/NearbyVolunteers.dart';
 
 //import 'package:gradient_app_bar/gradient_app_bar.dart';
 //import 'package:rescuefy/services/auth.dart';
@@ -302,25 +304,41 @@ class _HomeState extends State<Home> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: support
-                  .map((e) =>
-                  Column(
-                    children: <Widget>[
-                      Image.asset(
-                        e.keys.first,
-                        height: screenHeight * 0.12,
-                        width: screenHeight * 0.12,
-                      ),
-                      SizedBox(height: screenHeight * 0.015),
-                      Text(
-                        e.values.first,
-                        style: const TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w500,
+                  .map((e) => GestureDetector(
+                        onTap: () {
+                          if (e.values.first == 'Volunteer\nRegistration') {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => VolunteerRegister()),
+                            );
+                          } else if (e.values.first == 'Nearest\nVolunteers') {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => NearbyVolunteers()),
+                            );
+                          }
+                        },
+                        child: Column(
+                          children: <Widget>[
+                            Image.asset(
+                              e.keys.first,
+                              height: screenHeight * 0.12,
+                              width: screenHeight * 0.12,
+                            ),
+                            SizedBox(height: screenHeight * 0.015),
+                            Text(
+                              e.values.first,
+                              style: const TextStyle(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              textAlign: TextAlign.center,
+                            )
+                          ],
                         ),
-                        textAlign: TextAlign.center,
-                      )
-                    ],
-                  ))
+                      ))
                   .toList(),
             ),
 

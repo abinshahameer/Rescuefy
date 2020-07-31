@@ -105,18 +105,16 @@ class _FormResRegState extends State<FormResReg> {
                 // otherwise.
                 if (_formKey.currentState.validate()) {
                   // If the form is valid, display a Snackbar.
-                  firestoreInstance.collection("Restaurants").document(
-                      "Restaurant1").setData(
-                      {
-                        "name": name,
-                        "phone": phone,
-                        "resname": resname,
-                        "address": {
-                          "street": "street 24",
-                          "city": "new york"
-                        }
-                      }).then((_) {
-                    print("success")
+                  firestoreInstance
+                      .collection("Restaurants")
+                      .document(resname)
+                      .setData({
+                    "name": name,
+                    "phone": phone,
+                    "resname": resname,
+                    "address": {"street": "street 24", "city": "new york"}
+                  }).then((_) {
+                    print("success");
                   });
                 }
               },
