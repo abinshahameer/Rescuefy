@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:rescuefy/shared/loading.dart';
 
 class NearbyVolunteers extends StatelessWidget {
   @override
@@ -46,15 +47,14 @@ class _VolunteerListState extends State<VolunteerList> {
           future: getList(),
           builder: (_, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: Text("Loading..."),
-              );
+              return Loading();
             } else {
               return ListView.builder(
                   itemCount: snapshot.data.length,
                   itemBuilder: (_, index) {
                     return ListTile(
                       title: Text(snapshot.data[index].data["name"]),
+                      subtitle: Text(snapshot.data[index].data["phone"]),
                     );
                   });
             }
